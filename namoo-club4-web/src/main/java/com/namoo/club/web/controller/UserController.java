@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.namoo.club.domain.Club;
 import com.namoo.club.domain.Community;
@@ -37,7 +38,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/login.do", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, String userId, String password, String url) {
+	public String login(HttpServletRequest req, 
+			@RequestParam("userId") String userId, 
+			@RequestParam("password") String password, 
+			@RequestParam("url") String url) {
 		//
 		boolean login = townerService.loginAsTowner(userId, password);
 
