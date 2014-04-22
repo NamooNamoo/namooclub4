@@ -101,8 +101,8 @@ public class UserController {
 	@RequestMapping(value = "/user/withdrawal")
 	public String withdrawal(Model model) {
 		//
-		String msg = "user/withdrawal";
-		String url = "나무커뮤니티를 탈퇴하시겠습니까?";
+		String url = "user/withdrawal";
+		String msg = "나무커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}

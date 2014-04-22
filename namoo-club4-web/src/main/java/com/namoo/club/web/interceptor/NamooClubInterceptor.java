@@ -32,7 +32,7 @@ public class NamooClubInterceptor extends HandlerInterceptorAdapter {
 				if ( SessionManager.getInstance(request).getLoginId() == null) {
 					// 로그인이 되어있지 않으면 로그인 페이지로 리다이렉트
 					String contextPath = request.getContextPath();
-					response.sendRedirect(contextPath + "/view/user/login.xhtml");
+					response.sendRedirect(contextPath + "/user/login");
 				} 
 			} 
 		}

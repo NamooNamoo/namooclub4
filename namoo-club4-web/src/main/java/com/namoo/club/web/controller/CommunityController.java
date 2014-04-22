@@ -128,8 +128,8 @@ public class CommunityController {
 	@RequestMapping(value = "/community/join")
 	public String joinCommunity(Model model) {
 		//
-		String msg = "community/join";
-		String url = "커뮤니티에 가입하시겠습니까?";
+		String url = "community/join";
+		String msg = "커뮤니티에 가입하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 		
@@ -148,8 +148,8 @@ public class CommunityController {
 	@RequestMapping(value = "/community/remove")
 	public String removeCommunity(Model model) {
 		//
-		String msg = "community/remove";
-		String url = "커뮤니티를 삭제하시겠습니까?";
+		String url = "community/remove";
+		String msg = "커뮤니티를 삭제하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
@@ -169,8 +169,8 @@ public class CommunityController {
 	@RequestMapping(value = "/community/withdrawal")
 	public String withdrawalCommunity(Model model) {
 		//
-		String msg = "community/withdrawal";
-		String url = "커뮤니티를 탈퇴하시겠습니까?";
+		String url = "community/withdrawal";
+		String msg = "커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}

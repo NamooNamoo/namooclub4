@@ -44,8 +44,8 @@ public class ClubController {
 	@RequestMapping(value = "/club/join")
 	public String join(Model model, @RequestParam("club_id") String clubId, @RequestParam("community_id") String communityId) {
 		//
-		String msg = "club/join.do";
-		String url = "클럽에 가입하시겠습니까?";
+		String url = "club/join.do";
+		String msg = "클럽에 가입하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
@@ -88,8 +88,8 @@ public class ClubController {
 	@RequestMapping(value = "/club/remove", method = RequestMethod.GET)
 	public String removeCommunity(Model model) {
 		//
-		String msg = "club/remove";
-		String url = "클럽을 삭제하시겠습니까?";
+		String url = "club/remove";
+		String msg = "클럽을 삭제하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
@@ -112,8 +112,8 @@ public class ClubController {
 	@RequestMapping(value = "/club/withdrawal")
 	public String withdrawl(Model model) {
 		//
-		String msg = "club/withdrawal";
-		String url = "클럽을 탈퇴하시겠습니까?";
+		String url = "club/withdrawal";
+		String msg = "클럽을 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
