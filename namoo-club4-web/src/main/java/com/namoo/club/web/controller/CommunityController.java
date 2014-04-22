@@ -102,7 +102,7 @@ public class CommunityController {
 		return "community/open";
 	}
 	
-	@RequestMapping("/community/open")
+	@RequestMapping("/community/open.do")
 	public String openCommunityProcess(HttpServletRequest req, Community community,
 			String[] categories) {
 		//
@@ -135,7 +135,7 @@ public class CommunityController {
 		
 	}
 	
-	@RequestMapping("/community/join")
+	@RequestMapping("/community/join.do")
 	public String joinCommunity(HttpServletRequest req, @RequestParam("community_id") int communityId) {
 		//
 		String loginId =  SessionManager.getInstance(req).getLoginId();
@@ -154,7 +154,7 @@ public class CommunityController {
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping("/community/remove")
+	@RequestMapping("/community/remove.do")
 	public String removeCommunity(@RequestParam("community_id") int communityId, String mypage) {
 		//		
 		communityService.removeCommunity(communityId);
@@ -175,7 +175,7 @@ public class CommunityController {
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping("/community/withdrawal")
+	@RequestMapping("/community/withdrawal.do")
 	public String withdrawalCommunity(HttpServletRequest req, 
 			@RequestParam("community_id") int communityId, String mypage) {
 		//

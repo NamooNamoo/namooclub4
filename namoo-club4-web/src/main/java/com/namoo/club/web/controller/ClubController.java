@@ -94,7 +94,7 @@ public class ClubController {
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping(value = "/club/remove", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/remove.do", method = RequestMethod.POST)
 	public String remove(@RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
 		//		
 		clubService.removeClub(clubId);
@@ -118,7 +118,7 @@ public class ClubController {
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping(value = "/club/withdrawal", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/withdrawal.do", method = RequestMethod.POST)
 	public String withdrawl(HttpServletRequest req, @RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();

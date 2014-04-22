@@ -114,7 +114,7 @@ public class ManageController {
 		return "manage/club_mem_detail";
 	}
 	
-	@RequestMapping("/manage/club_mem")
+	@RequestMapping("/manage/club_mem.do")
 	public String ClubMemberModify(HttpServletRequest req, @RequestParam("club_id") int clubId, 
 			@RequestParam("id") String id, @RequestParam("level") int level) {
 		//

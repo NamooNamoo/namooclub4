@@ -38,7 +38,7 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/login.do", method = RequestMethod.POST)
 	public String login(HttpServletRequest req, 
 			@RequestParam("userId") String userId, 
 			@RequestParam("password") String password, 
@@ -88,7 +88,7 @@ public class UserController {
 		return "user/join";
 	}
 	
-	@RequestMapping(value = "/user/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/join.do", method = RequestMethod.POST)
 	public String join(SocialPerson person) {
 		//
 		townerService.registTowner(person.getName(), person.getEmail(), 
@@ -108,7 +108,7 @@ public class UserController {
 	}
 	
 	@LoginRequired
-	@RequestMapping("/user/withdrawal")
+	@RequestMapping("/user/withdrawal.do")
 	public String withdrawal(HttpSession session) {
 		//
 		String email = (String) session.getAttribute("loginId");
