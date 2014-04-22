@@ -97,7 +97,7 @@ body {
 			<div class="row form-btn">
 				<button class="btn btn-large btn-warning" type="submit" value="로그인">로그인</button>
 				<button class="btn btn-large btn-default" type="button" value="회원가입"
-					onclick="location.href='${ctx}/view/user/join.xhtml'">회원가입</button>
+					onclick="location.href='${ctx}/user/join'">회원가입</button>
 			</div>
 		</form>
 

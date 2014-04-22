@@ -129,7 +129,7 @@ function levelCheck(id) {
 										<tr>
 											<c:set var="count" value="${count+1}" />
 											<td class="text-center">${count}</td>
-											<td class="text-center"><a href="${ctx}/manage/club_mem_detail.do?id=${manager.manager.email}&level=${manager.level}&club_id=${param.club_id}">${manager.manager.email}</a></td>
+											<td class="text-center"><a href="${ctx}/manage/club_mem_detail?id=${manager.manager.email}&level=${manager.level}&club_id=${param.club_id}">${manager.manager.email}</a></td>
 											<td class="text-center">${manager.manager.name}</td>
 											<td class="text-center">${manager.level}</td>
 										</tr>
@@ -162,7 +162,7 @@ function levelCheck(id) {
 
 										<tr>
 											<td class="text-center">${managerCount.count}</td>
-											<td class="text-center"><a href="${ctx}/manage/club_mem_detail.do?id=${member.member.email}&level=1&club_id=${param.club_id}">${member.member.email}</a></td>
+											<td class="text-center"><a href="${ctx}/manage/club_mem_detail?id=${member.member.email}&level=1&club_id=${param.club_id}">${member.member.email}</a></td>
 											<%-- <td><a href="./commViewMember.html">${member.name}</a></td> --%>
 											<td class="text-center">${member.member.name}</td>
 											<td class="text-center">1</td>

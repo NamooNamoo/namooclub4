@@ -122,7 +122,7 @@
 											<td class="text-center">${status.count}</td>
 											<td>${club.category}</td>
 											<td><a
-												href="${ctx}/manage/club_detail.do?club_id=${club.id}">${club.name}</a></td>
+												href="${ctx}/manage/club_detail?club_id=${club.id}">${club.name}</a></td>
 											<td>${club.mainManager.manager.name}</td>
 											<td class="text-center"><button class="btn btn-xs btn-default" onclick="location.href='${ctx}/manage/club_mem?club_id=${club.id}'">회원관리</button></td>
 										</tr>

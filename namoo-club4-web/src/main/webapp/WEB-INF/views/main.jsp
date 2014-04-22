@@ -24,7 +24,7 @@
 						<h1>나무 커뮤니티와 함께!</h1>
 						<p>나무 커뮤니티와 함께 특정 취미와 관심사, 특정 그룹 또는 조직에 관한 대화를 시작하세요.</p>
 						<p>
-							<a href="${ctx}/view/community/open.xhtml"
+							<a href="${ctx}/community/open"
 								class="btn btn-warning btn-lg">커뮤니티 개설하기</a>
 						</p>
 					</div>
@@ -69,19 +69,19 @@
 										<li class="list-group-item"><span class="badge">${myCommunity.date}</span>
 											<h4>
 												<a
-													href="${ctx}/community/main.do?community_id=${myCommunity.id}">${myCommunity.name}
+													href="${ctx}/community/main?community_id=${myCommunity.id}">${myCommunity.name}
 													(클럽:${myCommunity.getAllClub().size()})
 													(회원:${myCommunity.members.size()})</a>
 											</h4>
 											<p>${myCommunity.description}</p> <c:choose>
 												<c:when test="${myCommunity.manager.manager.email ne loginId}">
 													<button type="button" class="btn btn-default btn-sm"
-														onclick="location.href='${ctx}/view/community/withdrawal.xhtml?community_id=${myCommunity.id}'">멤버탈퇴
+														onclick="location.href='${ctx}/community/withdrawal?community_id=${myCommunity.id}'">멤버탈퇴
 														신청하기</button>
 												</c:when>
 												<c:when test="${myCommunity.manager.manager.email eq loginId}">
 													<button type="button" class="btn btn-default btn-sm"
-														onclick="location.href='${ctx}/view/community/remove.xhtml?community_id=${myCommunity.id}'">커뮤니티
+														onclick="location.href='${ctx}/community/remove?community_id=${myCommunity.id}'">커뮤니티
 														삭제하기</button>
 												</c:when>
 											</c:choose></li>
@@ -105,13 +105,13 @@
 											<h4>
 												<!-- <span class="label label-info">추천</span>&nbsp; -->
 												<a
-													href="${ctx}/community/main.do?community_id=${notMyCommunity.id}&join=false">${notMyCommunity.name}
+													href="${ctx}/community/main?community_id=${notMyCommunity.id}&join=false">${notMyCommunity.name}
 													(클럽:${notMyCommunity.getAllClub().size()})
 													(회원:${notMyCommunity.members.size()})</a>
 											</h4>
 											<p>${notMyCommunity.description}</p>
 											<button type="button" class="btn btn-default btn-sm"
-												onclick="location.href='${ctx}/view/community/join.xhtml?community_id=${notMyCommunity.id}'">멤버
+												onclick="location.href='${ctx}/community/join?community_id=${notMyCommunity.id}'">멤버
 												가입하기</button></li>
 									</c:forEach>
 								</ul>
@@ -132,13 +132,13 @@
 										<li class="list-group-item"><span class="badge">${community.date}</span>
 											<h4>
 												<a
-													href="${ctx}/community/main.do?community_id=${community.id}">${community.name}
+													href="${ctx}/community/main?community_id=${community.id}">${community.name}
 													(클럽:${community.getAllClub().size()})
 													(회원:${community.members.size()})</a>
 											</h4>
 											<p>${community.description}</p>
 											<button type="button" class="btn btn-default btn-sm"
-												onclick="location.href='${ctx}/view/community/join.xhtml?community_id=${community.id}'">멤버
+												onclick="location.href='${ctx}/community/join?community_id=${community.id}'">멤버
 												가입하기</button></li>
 									</c:forEach>
 								</ul>

@@ -97,7 +97,7 @@
 										<tr>
 											<td class="text-center">${status.count}</td>
 											<td><a
-												href="${ctx}/manage/community_detail.do?community_id=${community.id}">${community.name}</a></td>
+												href="${ctx}/manage/community_detail?community_id=${community.id}">${community.name}</a></td>
 											<td>${community.manager.manager.name}</td>
 										</tr>
 									</c:forEach>

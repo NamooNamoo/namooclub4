@@ -113,11 +113,11 @@
 											<c:choose>
 											<c:when  test="${community.manager.manager.email eq loginId}">
 												<button class="btn btn-xs btn-default" 
-												onclick="location.href='${ctx}/view/community/remove.xhtml?community_id=${community.id}&mypage=true'">삭제</button>
+												onclick="location.href='${ctx}/community/remove?community_id=${community.id}&mypage=true'">삭제</button>
 											</c:when>
 											<c:otherwise>
 												<button class="btn btn-xs btn-default" 
-												onclick="location.href='${ctx}/view/community/withdrawal.xhtml?community_id=${community.id}&mypage=true'">탈퇴</button>
+												onclick="location.href='${ctx}/community/withdrawal?community_id=${community.id}&mypage=true'">탈퇴</button>
 											</c:otherwise>
 											</c:choose>
 											</td>
@@ -154,11 +154,11 @@
 											<c:choose>
 											<c:when  test="${club.mainManager.manager.email eq loginId}">
 											<button class="btn btn-xs btn-default" 
-											onclick="location.href='${ctx}/view/club/remove.xhtml?club_id=${club.id}'">삭제</button>
+											onclick="location.href='${ctx}/club/remove?club_id=${club.id}'">삭제</button>
 											</c:when>
 											<c:otherwise>
 											<button class="btn btn-xs btn-default" 
-											onclick="location.href='${ctx}/view/club/withdrawal.xhtml?club_id=${club.id}'">탈퇴</button>
+											onclick="location.href='${ctx}/club/withdrawal?club_id=${club.id}'">탈퇴</button>
 											</c:otherwise>
 											</c:choose>
 											</td>
