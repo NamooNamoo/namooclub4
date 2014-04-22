@@ -1,0 +1,31 @@
+<dataset>
+	
+	<user email="user1" name="유저1" passwd="1234" />
+	<user email="user2" name="유저2" passwd="1234" />
+	<user email="user3" name="유저3" passwd="1234" />
+	<user email="user4" name="유저4" passwd="1234" />
+	
+	<community comm_no="1" name="커뮤니티1" description="첫번째 커뮤니티" reg_date="2014-04-10 12:35:20"/>
+	<community comm_no="2" name="커뮤니티2" description="두번째 커뮤니티" reg_date="2014-04-10 12:35:20"/>
+	<community comm_no="3" name="커뮤니티3" description="세번째 커뮤니티" reg_date="2014-04-10 12:35:20"/>
+	<community comm_no="4" name="커뮤니티4" description="네번째 커뮤니티" reg_date="2014-04-10 12:35:20"/>
+
+	<category category_no="1" category="카테고리1" comm_no="1" />
+	<category category_no="2" category="카테고리2" comm_no="1" />
+	<category category_no="3" category="카테고리3" comm_no="1" />
+	<category category_no="4" category="카테고리1" comm_no="2" />
+	<category category_no="5" category="카테고리2" comm_no="2" />
+	<category category_no="6" category="카테고리3" comm_no="2" />
+	<category category_no="7" category="카테고리1" comm_no="3" />
+	<category category_no="8" category="카테고리2" comm_no="3" />
+	<category category_no="9" category="카테고리3" comm_no="3" />
+	<category category_no="10" category="카테고리1" comm_no="4" />
+	<category category_no="11" category="카테고리2" comm_no="4" />
+	<category category_no="12" category="카테고리3" comm_no="4" />
+	
+	<member user_id="user1" group_type="1" group_no="1" level="3" />
+	<member user_id="user2" group_type="1" group_no="2" level="3" />
+	<member user_id="user3" group_type="1" group_no="3" level="3" />
+	<member user_id="user4" group_type="1" group_no="4" level="3" />
+	
+</dataset>
