@@ -27,7 +27,7 @@ public class ManageController {
 	@Autowired
 	private ClubService clubService;
 
-	@RequestMapping("/manage/community.do")
+	@RequestMapping("/manage/community")
 	public String communityManage(HttpServletRequest req, Model model) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
@@ -39,7 +39,7 @@ public class ManageController {
 		return "manage/community";
 	}
 	
-	@RequestMapping("/manage/community_detail.do")
+	@RequestMapping("/manage/community_detail")
 	public String communityDetail(Model model, @RequestParam("community_id") int communityId) {
 		//
 		Community community = communityService.findCommunity(communityId);
@@ -49,16 +49,16 @@ public class ManageController {
 		return "manage/community_detail";
 	}
 	
-	@RequestMapping("/manage/community_modify.do")
+	@RequestMapping("/manage/community_modify")
 	public String communityModify(Community community, @RequestParam("community_id") int communityId) {
 		//
 		communityService.modifyCommunity(communityId, community.getName(), 
 				community.getDescription());
 
-		return "redirect:/manage/community.do";
+		return "redirect:/manage/community";
 	}
 	
-	@RequestMapping("/manage/club.do")
+	@RequestMapping("/manage/club")
 	public String clubManage(HttpServletRequest req, Model model) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
@@ -72,7 +72,7 @@ public class ManageController {
 		return "manage/club";
 	}
 	
-	@RequestMapping("/manage/club_detail.do")
+	@RequestMapping("/manage/club_detail")
 	public String clubDetail(Model model, @RequestParam("club_id") int clubId) {
 		//
 		Club club = clubService.findClub(clubId);
@@ -82,12 +82,12 @@ public class ManageController {
 		return "manage/club_detail";
 	}
 	
-	@RequestMapping("/manage/club_modify.do")
+	@RequestMapping("/manage/club_modify")
 	public String clubModify(Club club, @RequestParam("club_id") int clubId) {
 		//
 		clubService.modifyClub(clubId, club.getName(), club.getDescription());
 
-		return "redirect:/manage/club.do";
+		return "redirect:/manage/club";
 	}
 	
 	@RequestMapping("/manage/club_mem")
@@ -100,7 +100,7 @@ public class ManageController {
 		return "manage/club_mem";
 	}
 	
-	@RequestMapping("/manage/club_mem_detail.do")
+	@RequestMapping("/manage/club_mem_detail")
 	public String clubMemberDetail(HttpServletRequest req, Model model) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
@@ -114,7 +114,7 @@ public class ManageController {
 		return "manage/club_mem_detail";
 	}
 	
-	@RequestMapping("/manage/club_mem.do")
+	@RequestMapping("/manage/club_mem")
 	public String ClubMemberModify(HttpServletRequest req, @RequestParam("club_id") int clubId, 
 			@RequestParam("id") String id, @RequestParam("level") int level) {
 		//
@@ -123,7 +123,7 @@ public class ManageController {
 		if(level==3) {
 			clubService.modifyManager(
 					clubId, SessionManager.getInstance(req).getLoginId(), 1);
-			return "redirect:/main.do";
+			return "redirect:/main";
 		} else {
 			return "redirect:/manage/club_mem?club_id=" + clubId;
 		}

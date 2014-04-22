@@ -33,12 +33,12 @@ public class UserController {
 	@Autowired
 	private ClubService clubService;
 
-	@RequestMapping(value = "/view/user/login.xhtml")
+	@RequestMapping(value = "/user/login")
 	public String login() {
 		return "user/login";
 	}
 	
-	@RequestMapping(value = "/user/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest req, 
 			@RequestParam("userId") String userId, 
 			@RequestParam("password") String password, 
@@ -49,11 +49,11 @@ public class UserController {
 		if(login){
 			//
 			if(url != null) {	// 로그인을 실행한 페이지 정보를 보냈는지 확인해서 로그인을 실행하고 해당 페이지로 돌려보낸다.
-				if (url.contains("login.xhtml")) {
+				if (url.contains("login")) {
 					//
 					System.out.println("로긴성공");
 					SessionManager.getInstance(req).setLoginId(userId);	// 로그인 유저 정보를 세션에 담아서 보냄 설정 
-					return "redirect:/main.do";
+					return "redirect:/main";
 				} else {
 					//
 					System.out.println("로긴성공");
@@ -64,16 +64,16 @@ public class UserController {
 				//
 				System.out.println("로긴성공");
 				SessionManager.getInstance(req).setLoginId(userId);
-				return "redirect:/main.do";
+				return "redirect:/main";
 			}
 		} else{
 			//
 			System.out.println("로긴실패");
-			return "redirect:/view/user/login.xhtml";
+			return "redirect:/user/login";
 		}
 	}
 	
-	@RequestMapping("/user/logout.do")
+	@RequestMapping("/user/logout")
 	public String logout(HttpServletRequest req, HttpSession session) {
 		//
 		String url = req.getHeader("Referer");
@@ -83,32 +83,32 @@ public class UserController {
 		return "redirect:" + url;
 	}
 	
-	@RequestMapping(value = "/view/user/join.xhtml")
+	@RequestMapping(value = "/user/join")
 	public String join() {
 		return "user/join";
 	}
 	
-	@RequestMapping(value = "/user/join.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/join", method = RequestMethod.POST)
 	public String join(SocialPerson person) {
 		//
 		townerService.registTowner(person.getName(), person.getEmail(), 
 				person.getPassword());
 
-		return "redirect:/main.do";
+		return "redirect:/main";
 	}
 	
 	@LoginRequired
-	@RequestMapping(value = "/view/user/withdrawal.xhtml")
+	@RequestMapping(value = "/user/withdrawal")
 	public String withdrawal(Model model) {
 		//
-		String msg = "user/withdrawal.do";
+		String msg = "user/withdrawal";
 		String url = "나무커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@LoginRequired
-	@RequestMapping("/user/withdrawal.do")
+	@RequestMapping("/user/withdrawal")
 	public String withdrawal(HttpSession session) {
 		//
 		String email = (String) session.getAttribute("loginId");
@@ -117,11 +117,11 @@ public class UserController {
 		
 		session.removeAttribute("loginId");
 		
-		return "redirect:/main.do";
+		return "redirect:/main";
 	}
 	
 	@LoginRequired
-	@RequestMapping("/user/mypage.do")
+	@RequestMapping("/user/mypage")
 	public String mypage(HttpSession session, Model model) {
 		//
 		String loginId = (String) session.getAttribute("loginId");
@@ -143,7 +143,7 @@ public class UserController {
 	}
 	
 	@LoginRequired
-	@RequestMapping(value = "/user/modify.do")
+	@RequestMapping(value = "/user/modify")
 	public String modify(SocialPerson person) {
 		//
 		townerService.modifyTowner(person.getName(), person.getEmail(), 

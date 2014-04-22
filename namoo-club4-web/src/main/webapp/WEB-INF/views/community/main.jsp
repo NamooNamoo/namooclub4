@@ -25,7 +25,7 @@
 						<p>${community.description}</p>
 						<p>
 							<c:if test="${param.join ne false}">
-								<a href="${ctx}/club/open.do?community_id=${community.id}"
+								<a href="${ctx}/club/open?community_id=${community.id}"
 									class="btn btn-warning btn-lg">클럽 개설하기</a>
 							</c:if>
 						</p>
@@ -81,7 +81,7 @@
 											<h4>
 												<span class="label label-primary">${myClub.category}</span>&nbsp;
 												<a
-													href="${ctx}/club/main.do?community_id=${param.community_id}&club_id=${myClub.id}">${myClub.name}
+													href="${ctx}/club/main?community_id=${param.community_id}&club_id=${myClub.id}">${myClub.name}
 													(회원:${myClub.members.size()})</a>
 											</h4>
 											<p>${myClub.description}</p>
@@ -96,7 +96,7 @@
 													</c:when> --%>
 													<c:when test="${myClubManager.manager.email eq loginId}">
 														<button type="button" class="btn btn-default btn-sm"
-															onclick="location.href='${ctx}/view/club/remove.xhtml?community_id=${param.community_id}&club_id=${myClub.id}'">클럽
+															onclick="location.href='${ctx}/club/remove?community_id=${param.community_id}&club_id=${myClub.id}'">클럽
 															삭제하기</button>
 															<c:set var="temp" value="true" />
 													</c:when>
@@ -104,7 +104,7 @@
 											</c:forEach>
 												<c:if test="${temp==false}">
 												<button type="button" class="btn btn-default btn-sm"
-															onclick="location.href='${ctx}/view/club/withdrawal.xhtml?community_id=${param.community_id}&club_id=${myClub.id}'">멤버탈퇴
+															onclick="location.href='${ctx}/club/withdrawal?community_id=${param.community_id}&club_id=${myClub.id}'">멤버탈퇴
 															신청하기</button>
 												</c:if></li>
 									</c:forEach>
@@ -128,12 +128,12 @@
 												<!-- <span class="label label-info">추천</span>&nbsp; -->
 												<span class="label label-primary">${notMyClub.category}</span>&nbsp;
 												<a
-													href="${ctx}/club/main.do?community_id=${param.community_id}&club_id=${notMyClub.id}">${notMyClub.name}
+													href="${ctx}/club/main?community_id=${param.community_id}&club_id=${notMyClub.id}">${notMyClub.name}
 													(회원:${notMyClub.members.size()})</a>
 											</h4>
 											<p>${notMyClub.description}</p>
 											<button type="button" class="btn btn-default btn-sm"
-												onclick="location.href='${ctx}/club/join.do?community_id=${param.community_id}&club_id=${notMyClub.id}'">멤버
+												onclick="location.href='${ctx}/club/join?community_id=${param.community_id}&club_id=${notMyClub.id}'">멤버
 												가입하기</button></li>
 									</c:forEach>
 								</ul>
@@ -155,12 +155,12 @@
 											<h4>
 												<span class="label label-primary">${club.category}</span>&nbsp;
 												<a
-													href="${ctx}/club/main.do?community_id=${param.community_id}&club_id=${club.id}">${club.name}
+													href="${ctx}/club/main?community_id=${param.community_id}&club_id=${club.id}">${club.name}
 													(회원:${club.members.size()})</a>
 											</h4>
 											<p>${club.description}</p>
 											<button type="button" class="btn btn-default btn-sm"
-												onclick="location.href='${ctx}/club/join.do?community_id=${param.community_id}&club_id=${club.id}'">멤버
+												onclick="location.href='${ctx}/club/join?community_id=${param.community_id}&club_id=${club.id}'">멤버
 												가입하기</button></li>
 									</c:forEach>
 								</ul>

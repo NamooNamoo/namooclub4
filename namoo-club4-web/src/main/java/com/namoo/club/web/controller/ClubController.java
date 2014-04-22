@@ -3,7 +3,6 @@ package com.namoo.club.web.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class ClubController {
 	@Autowired
 	CommunityService communityService;
 	
-	@RequestMapping(value = "/club/main.do")
+	@RequestMapping(value = "/club/main")
 	@LoginRequired(false)
 	public String main(Model model, @RequestParam("club_id") int clubId) {
 		//
@@ -42,16 +41,16 @@ public class ClubController {
 		return "club/main";
 	}
 	
-	@RequestMapping(value = "/club/join.do")
+	@RequestMapping(value = "/club/join")
 	public String join(Model model, @RequestParam("club_id") String clubId, @RequestParam("community_id") String communityId) {
 		//
-		String msg = "club/join_pro.do";
+		String msg = "club/join.do";
 		String url = "클럽에 가입하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping(value = "/club/join_pro.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/join.do", method = RequestMethod.POST)
 	public String join2(HttpServletRequest req, @RequestParam("club_id") int clubId, @RequestParam("community_id") int communityId) {
 		//
 
@@ -59,10 +58,10 @@ public class ClubController {
 
 		clubService.joinAsMember(clubId, loginId);
 		
-		return "redirect:/community/main.do?community_id=" + communityId;
+		return "redirect:/community/main?community_id=" + communityId;
 	}
 	
-	@RequestMapping(value = "/club/open.do")
+	@RequestMapping(value = "/club/open")
 	public String open(Model model, @RequestParam("community_id") int communityId) {
 		//
 		Community community = communityService.findCommunity(communityId);
@@ -74,7 +73,7 @@ public class ClubController {
 		return "club/open";
 	}
 	
-	@RequestMapping(value = "/club/open_pro.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/open.do", method = RequestMethod.POST)
 	public String open2(HttpServletRequest req, Model model, 
 			Club club, @RequestParam("community_id") int communityId) {
 		//
@@ -82,20 +81,20 @@ public class ClubController {
 				
 		clubService.registClub(communityId, loginId, club, club.getCategory());
 
-		return "redirect:/community/main.do?community_id="+communityId;
+		return "redirect:/community/main?community_id="+communityId;
 	}
 	
 	
-	@RequestMapping(value = "/view/club/remove.xhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/club/remove", method = RequestMethod.GET)
 	public String removeCommunity(Model model) {
 		//
-		String msg = "club/remove.do";
+		String msg = "club/remove";
 		String url = "클럽을 삭제하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping(value = "/club/remove.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
 		//		
 		clubService.removeClub(clubId);
@@ -104,22 +103,22 @@ public class ClubController {
 		if (communityId.equals("")) {
 			url="../user/mypage";
 		} else {
-			url="../community/main.do?community_id="+communityId;
+			url="../community/main?community_id="+communityId;
 		}
 		
 		return "redirect:" + url;
 	}
 	
-	@RequestMapping(value = "/view/club/withdrawal.xhtml")
+	@RequestMapping(value = "/club/withdrawal")
 	public String withdrawl(Model model) {
 		//
-		String msg = "club/withdrawal.do";
+		String msg = "club/withdrawal";
 		String url = "클럽을 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping(value = "/club/withdrawal.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/club/withdrawal", method = RequestMethod.POST)
 	public String withdrawl(HttpServletRequest req, @RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
@@ -130,7 +129,7 @@ public class ClubController {
 		if (communityId.equals("")) {
 			url="../user/mypage";
 		} else {
-			url="../community/main.do?community_id="+communityId;
+			url="../community/main?community_id="+communityId;
 		}
 		return "redirect:" + url;
 	}

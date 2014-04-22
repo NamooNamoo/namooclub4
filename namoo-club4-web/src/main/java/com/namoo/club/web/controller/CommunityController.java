@@ -33,7 +33,7 @@ public class CommunityController {
 	@Autowired
 	private TownerService townerService;
 
-	@RequestMapping("/main.do")
+	@RequestMapping("/main")
 	@LoginRequired(false)
 	public String main(HttpServletRequest req, Model model) {
 		//
@@ -62,7 +62,7 @@ public class CommunityController {
 		return "main";
 	}
 	
-	@RequestMapping("/community/main.do")
+	@RequestMapping("/community/main")
 	@LoginRequired(false)
 	public String communityMain(HttpServletRequest req, Model model, 
 			@RequestParam("community_id") int communityId) {
@@ -97,12 +97,12 @@ public class CommunityController {
 		return "/community/main";
 	}
 	
-	@RequestMapping(value = "/view/community/open.xhtml")
+	@RequestMapping(value = "/community/open")
 	public String openCommunity() {
 		return "community/open";
 	}
 	
-	@RequestMapping("/community/open.do")
+	@RequestMapping("/community/open")
 	public String openCommunityProcess(HttpServletRequest req, Community community,
 			String[] categories) {
 		//
@@ -122,60 +122,60 @@ public class CommunityController {
 		communityService.registCommunity(community.getName(), 
 				community.getDescription(), email, categoryList);
 
-		return "redirect:/main.do";
+		return "redirect:/main";
 	}
 	
-	@RequestMapping(value = "/view/community/join.xhtml")
+	@RequestMapping(value = "/community/join")
 	public String joinCommunity(Model model) {
 		//
-		String msg = "community/join.do";
+		String msg = "community/join";
 		String url = "커뮤니티에 가입하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 		
 	}
 	
-	@RequestMapping("/community/join.do")
+	@RequestMapping("/community/join")
 	public String joinCommunity(HttpServletRequest req, @RequestParam("community_id") int communityId) {
 		//
 		String loginId =  SessionManager.getInstance(req).getLoginId();
 
 		communityService.joinAsMember(communityId, loginId);
 		
-		return "redirect:/main.do";
+		return "redirect:/main";
 	}
 	
-	@RequestMapping(value = "/view/community/remove.xhtml")
+	@RequestMapping(value = "/community/remove")
 	public String removeCommunity(Model model) {
 		//
-		String msg = "community/remove.do";
+		String msg = "community/remove";
 		String url = "커뮤니티를 삭제하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping("/community/remove.do")
+	@RequestMapping("/community/remove")
 	public String removeCommunity(@RequestParam("community_id") int communityId, String mypage) {
 		//		
 		communityService.removeCommunity(communityId);
 		
 		if (mypage != null) {
-			return "redirect:/user/mypage.do";
+			return "redirect:/user/mypage";
 		} else {
-			return "redirect:/main.do";
+			return "redirect:/main";
 		}
 	}
 	
-	@RequestMapping(value = "/view/community/withdrawal.xhtml")
+	@RequestMapping(value = "/community/withdrawal")
 	public String withdrawalCommunity(Model model) {
 		//
-		String msg = "community/withdrawal.do";
+		String msg = "community/withdrawal";
 		String url = "커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
-	@RequestMapping("/community/withdrawal.do")
+	@RequestMapping("/community/withdrawal")
 	public String withdrawalCommunity(HttpServletRequest req, 
 			@RequestParam("community_id") int communityId, String mypage) {
 		//
@@ -184,9 +184,9 @@ public class CommunityController {
 		communityService.withdrawalCommunity(communityId, email);
 		
 		if (mypage != null) {
-			return "redirect:/user/mypage.do";
+			return "redirect:/user/mypage";
 		} else {
-			return "redirect:/main.do";
+			return "redirect:/main";
 		}
 	}
 }
