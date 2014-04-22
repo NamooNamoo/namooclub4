@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.namoo.club.domain.Club;
 import com.namoo.club.domain.Community;
@@ -63,11 +64,9 @@ public class CommunityController {
 	@RequestMapping("/community/main.do")
 	@LoginRequired(false)
 	public String communityMain(HttpServletRequest req, Model model, 
-			String community_id) {
+			@RequestParam("community_id") int communityId) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
-
-		int communityId = Integer.parseInt(community_id);
 
 		Community community = communityService.findCommunity(communityId);
 		List<Club> clubList = clubService.findAllClubs(communityId);
@@ -134,10 +133,8 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/community/join.do")
-	public String joinCommunity(HttpServletRequest req, String community_id) {
+	public String joinCommunity(HttpServletRequest req, @RequestParam("community_id") int communityId) {
 		//
-		int communityId = Integer.parseInt(community_id);
-
 		String loginId =  SessionManager.getInstance(req).getLoginId();
 
 		communityService.joinAsMember(communityId, loginId);
@@ -155,10 +152,8 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/community/remove.do")
-	public String removeCommunity(String community_id, String mypage) {
-		//
-		int communityId = Integer.parseInt(community_id);
-		
+	public String removeCommunity(@RequestParam("community_id") int communityId, String mypage) {
+		//		
 		communityService.removeCommunity(communityId);
 		
 		if (mypage != null) {
@@ -178,9 +173,8 @@ public class CommunityController {
 	
 	@RequestMapping("/community/withdrawal.do")
 	public String withdrawalCommunity(HttpServletRequest req, 
-			String community_id, String mypage) {
+			@RequestParam("community_id") int communityId, String mypage) {
 		//
-		int communityId = Integer.parseInt(community_id);
 		String email =  SessionManager.getInstance(req).getLoginId();
 
 		communityService.withdrawalCommunity(communityId, email);

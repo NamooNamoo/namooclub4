@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.namoo.club.domain.Club;
 import com.namoo.club.domain.Community;
@@ -30,22 +31,21 @@ public class ClubController {
 	
 	@RequestMapping(value = "/club/main.do")
 	@LoginRequired(false)
-	public String main(Model model, String club_id) {
+	public String main(Model model, @RequestParam("club_id") int clubId) {
 		//
-		int clubId = Integer.parseInt(club_id);
 
 		Club club = clubService.findClub(clubId);
 
 		model.addAttribute("club", club);
 
-		return "/club/main";
+		return "club/main";
 	}
 	
 	@RequestMapping(value = "/club/join.do")
-	public String join(Model model, String club_id, String community_id) {
+	public String join(Model model, @RequestParam("club_id") String clubId, @RequestParam("community_id") String communityId) {
 		//
-		model.addAttribute("club_id", club_id);
-		model.addAttribute("community_id", community_id);
+		model.addAttribute("club_id", clubId);
+		model.addAttribute("community_id", communityId);
 		
 		model.addAttribute("url", "club/join_pro.do");
 		model.addAttribute("message", "클럽에 가입하시겠습니까?");
@@ -53,39 +53,34 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value = "/club/join_pro.do", method = RequestMethod.POST)
-	public String join2(HttpServletRequest req, String club_id, String community_id) {
+	public String join2(HttpServletRequest req, @RequestParam("club_id") int clubId, @RequestParam("community_id") int communityId) {
 		//
-		int clubId = Integer.parseInt(club_id);
 
 		String loginId = SessionManager.getInstance(req).getLoginId();
 
 		clubService.joinAsMember(clubId, loginId);
 		
-		return "redirect:/community/main.do?community_id=" + community_id;
+		return "redirect:/community/main.do?community_id=" + communityId;
 	}
 	
 	@RequestMapping(value = "/club/open.do")
-	public String open(Model model, String community_id) {
+	public String open(Model model, @RequestParam("community_id") int communityId) {
 		//
-		int communityId = Integer.parseInt(community_id);
-
 		Community community = communityService.findCommunity(communityId);
 		List<String> categories = community.getCategories();
 		
 		model.addAttribute("community", community);
 		model.addAttribute("categories", categories);
 
-		return "/club/open";
+		return "club/open";
 	}
 	
 	@RequestMapping(value = "/club/open_pro.do", method = RequestMethod.POST)
 	public String open2(HttpServletRequest req, Model model, 
-			Club club, String community_id) {
+			Club club, @RequestParam("community_id") int communityId) {
 		//
 		String loginId = SessionManager.getInstance(req).getLoginId();
-		
-		int communityId = Integer.parseInt(community_id);
-		
+				
 		clubService.registClub(communityId, loginId, club, club.getCategory());
 
 		return "redirect:/community/main.do?community_id="+communityId;
@@ -101,17 +96,15 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value = "/club/remove.do", method = RequestMethod.POST)
-	public String remove(String community_id, String club_id) {
-		//
-		int clubId = Integer.parseInt(club_id);
-		
+	public String remove(@RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
+		//		
 		clubService.removeClub(clubId);
-		
 		String url = "";
-		if (community_id.equals("")) {
+				
+		if (communityId.equals("")) {
 			url="../user/mypage";
 		} else {
-			url="../community/main.do?community_id="+community_id;
+			url="../community/main.do?community_id="+communityId;
 		}
 		
 		return "redirect:" + url;
@@ -125,19 +118,17 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value = "/club/withdrawal.do", method = RequestMethod.POST)
-	public String withdrawl(HttpServletRequest req, String community_id, String club_id) {
+	public String withdrawl(HttpServletRequest req, @RequestParam("community_id") String communityId, @RequestParam("club_id") int clubId) {
 		//
 		String email = SessionManager.getInstance(req).getLoginId();
-
-		int clubId = Integer.parseInt(club_id);
 
 		clubService.withdrawalClub(clubId, email);
 
 		String url = "";
-		if (community_id.equals("")) {
+		if (communityId.equals("")) {
 			url="../user/mypage";
 		} else {
-			url="../community/main.do?community_id="+community_id;
+			url="../community/main.do?community_id="+communityId;
 		}
 		return "redirect:" + url;
 	}

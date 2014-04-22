@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.namoo.club.domain.Club;
 import com.namoo.club.domain.Community;
@@ -39,10 +40,8 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/manage/community_detail.do")
-	public String communityDetail(Model model, String community_id) {
+	public String communityDetail(Model model, @RequestParam("community_id") int communityId) {
 		//
-		int communityId = Integer.parseInt(community_id);
-
 		Community community = communityService.findCommunity(communityId);
 
 		model.addAttribute("community", community);
@@ -51,11 +50,9 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/manage/community_modify.do")
-	public String communityModify(Community community, String community_id) {
+	public String communityModify(Community community, @RequestParam("community_id") int communityId) {
 		//
-		int commuityId = Integer.parseInt(community_id);
-
-		communityService.modifyCommunity(commuityId, community.getName(), 
+		communityService.modifyCommunity(communityId, community.getName(), 
 				community.getDescription());
 
 		return "redirect:/manage/community.do";
@@ -76,10 +73,8 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/manage/club_detail.do")
-	public String clubDetail(Model model, String club_id) {
+	public String clubDetail(Model model, @RequestParam("club_id") int clubId) {
 		//
-		int clubId = Integer.parseInt(club_id);
-
 		Club club = clubService.findClub(clubId);
 
 		model.addAttribute("club", club);
@@ -88,20 +83,16 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/manage/club_modify.do")
-	public String clubModify(Club club, String club_id) {
+	public String clubModify(Club club, @RequestParam("club_id") int clubId) {
 		//
-		int clubId = Integer.parseInt(club_id);
-
 		clubService.modifyClub(clubId, club.getName(), club.getDescription());
 
 		return "redirect:/manage/club.do";
 	}
 	
 	@RequestMapping("/manage/club_mem")
-	public String clubMember(Model model, String club_id) {
+	public String clubMember(Model model, @RequestParam("club_id") int clubId) {
 		//
-		int clubId = Integer.parseInt(club_id);
-
 		Club clubMembers = clubService.findAllClubMember(clubId); 
 
 		model.addAttribute("club", clubMembers);
@@ -124,15 +115,12 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/manage/club_mem.do")
-	public String ClubMemberModify(HttpServletRequest req, String club_id, 
-			String id, String level) {
+	public String ClubMemberModify(HttpServletRequest req, @RequestParam("club_id") int clubId, 
+			@RequestParam("id") String id, @RequestParam("level") int level) {
 		//
-		int clubId = Integer.parseInt(club_id);
-		int intLevel = Integer.parseInt(level);
+		clubService.modifyManager(clubId, id, level);
 
-		clubService.modifyManager(clubId, id, intLevel);
-
-		if(intLevel==3) {
+		if(level==3) {
 			clubService.modifyManager(
 					clubId, SessionManager.getInstance(req).getLoginId(), 1);
 			return "redirect:/main.do";
