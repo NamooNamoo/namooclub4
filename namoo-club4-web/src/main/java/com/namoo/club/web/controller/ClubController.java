@@ -18,6 +18,7 @@ import com.namoo.club.service.facade.ClubService;
 import com.namoo.club.service.facade.CommunityService;
 import com.namoo.club.web.session.LoginRequired;
 import com.namoo.club.web.session.SessionManager;
+import com.namoo.club.web.util.MessageUtility;
 
 @Controller
 @LoginRequired
@@ -44,12 +45,10 @@ public class ClubController {
 	@RequestMapping(value = "/club/join.do")
 	public String join(Model model, @RequestParam("club_id") String clubId, @RequestParam("community_id") String communityId) {
 		//
-		model.addAttribute("club_id", clubId);
-		model.addAttribute("community_id", communityId);
+		String msg = "club/join_pro.do";
+		String url = "클럽에 가입하시겠습니까?";
 		
-		model.addAttribute("url", "club/join_pro.do");
-		model.addAttribute("message", "클럽에 가입하시겠습니까?");
-		return "common/info";
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping(value = "/club/join_pro.do", method = RequestMethod.POST)
@@ -89,10 +88,11 @@ public class ClubController {
 	
 	@RequestMapping(value = "/view/club/remove.xhtml", method = RequestMethod.GET)
 	public String removeCommunity(Model model) {
-		//return "club/remove";
-		model.addAttribute("url", "club/remove.do");
-		model.addAttribute("message", "클럽을 삭제하시겠습니까?");
-		return "common/info";
+		//
+		String msg = "club/remove.do";
+		String url = "클럽을 삭제하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping(value = "/club/remove.do", method = RequestMethod.POST)
@@ -112,9 +112,11 @@ public class ClubController {
 	
 	@RequestMapping(value = "/view/club/withdrawal.xhtml")
 	public String withdrawl(Model model) {
-		model.addAttribute("url", "club/withdrawal.do");
-		model.addAttribute("message", "클럽을 탈퇴하시겠습니까?");
-		return "common/info";
+		//
+		String msg = "club/withdrawal.do";
+		String url = "클럽을 탈퇴하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping(value = "/club/withdrawal.do", method = RequestMethod.POST)

@@ -20,6 +20,7 @@ import com.namoo.club.service.facade.CommunityService;
 import com.namoo.club.service.facade.TownerService;
 import com.namoo.club.web.session.LoginRequired;
 import com.namoo.club.web.session.SessionManager;
+import com.namoo.club.web.util.MessageUtility;
 
 @Controller
 @LoginRequired
@@ -127,9 +128,11 @@ public class CommunityController {
 	@RequestMapping(value = "/view/community/join.xhtml")
 	public String joinCommunity(Model model) {
 		//
-		model.addAttribute("url", "community/join.do");
-		model.addAttribute("message", "커뮤니티에 가입하시겠습니까?");
-		return "common/info";
+		String msg = "community/join.do";
+		String url = "커뮤니티에 가입하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
+		
 	}
 	
 	@RequestMapping("/community/join.do")
@@ -145,10 +148,10 @@ public class CommunityController {
 	@RequestMapping(value = "/view/community/remove.xhtml")
 	public String removeCommunity(Model model) {
 		//
-		model.addAttribute("url", "community/remove.do");
-		model.addAttribute("message", "커뮤니티를 삭제하시겠습니까?");
-		return "common/info";
-		//return "community/remove";
+		String msg = "community/remove.do";
+		String url = "커뮤니티를 삭제하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping("/community/remove.do")
@@ -166,9 +169,10 @@ public class CommunityController {
 	@RequestMapping(value = "/view/community/withdrawal.xhtml")
 	public String withdrawalCommunity(Model model) {
 		//
-		model.addAttribute("url", "community/withdrawal.do");
-		model.addAttribute("message", "커뮤니티를 탈퇴하시겠습니까?");
-		return "common/info";
+		String msg = "community/withdrawal.do";
+		String url = "커뮤니티를 탈퇴하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping("/community/withdrawal.do")

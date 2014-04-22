@@ -21,6 +21,7 @@ import com.namoo.club.service.facade.CommunityService;
 import com.namoo.club.service.facade.TownerService;
 import com.namoo.club.web.session.LoginRequired;
 import com.namoo.club.web.session.SessionManager;
+import com.namoo.club.web.util.MessageUtility;
 
 @Controller
 public class UserController {
@@ -100,10 +101,10 @@ public class UserController {
 	@RequestMapping(value = "/view/user/withdrawal.xhtml")
 	public String withdrawal(Model model) {
 		//
-		model.addAttribute("url", "user/withdrawal.do");
-		model.addAttribute("message", "나무커뮤니티를 탈퇴하시겠습니까?");
-		return "common/info";
-		//return "user/withdrawal";
+		String msg = "user/withdrawal.do";
+		String url = "나무커뮤니티를 탈퇴하시겠습니까?";
+		
+		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@LoginRequired

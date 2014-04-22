@@ -4,15 +4,19 @@ import org.springframework.ui.Model;
 
 public class MessageUtility {
 	//
-	private Model model;
-
-	private MessageUtility (Model model) {
-		this.model = model;
+	private MessageUtility () {
+		
 	}
 	
-	public static MessageUtility getInstance(Model model, String msg, String url) {
+	public static MessageUtility getInstance() {
+		//
+		return new MessageUtility();
+	}
+	
+	public String showInfo(Model model, String msg, String url) {
+		//
 		model.addAttribute("url", url);
 		model.addAttribute("msg", msg);
-		return new MessageUtility(model);
+		return "common/info";
 	}
 }
