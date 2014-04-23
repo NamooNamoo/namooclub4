@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -128,7 +127,7 @@ public class CommunityController {
 	@RequestMapping(value = "/community/join")
 	public String joinCommunity(Model model) {
 		//
-		String url = "community/join";
+		String url = "community/join.do";
 		String msg = "커뮤니티에 가입하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
@@ -146,20 +145,24 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/community/remove")
-	public String removeCommunity(Model model) {
+	public String removeCommunity(Model model, 
+			@RequestParam(value = "mypage", required = false) String mypage) {
 		//
-		String url = "community/remove";
+		String url = "community/remove.do";
 		String msg = "커뮤니티를 삭제하시겠습니까?";
+		
+		model.addAttribute("mypage", mypage);
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
 	}
 	
 	@RequestMapping("/community/remove.do")
-	public String removeCommunity(@RequestParam("community_id") int communityId, String mypage) {
+	public String removeCommunity(@RequestParam("community_id") int communityId, 
+			@RequestParam(value = "mypage", required = false) String mypage) {
 		//		
 		communityService.removeCommunity(communityId);
 		
-		if (mypage != null) {
+		if (("true").equals(mypage)) {
 			return "redirect:/user/mypage";
 		} else {
 			return "redirect:/main";
@@ -167,9 +170,10 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/community/withdrawal")
-	public String withdrawalCommunity(Model model) {
+	public String withdrawalCommunity(Model model, 
+			@RequestParam(value = "mypage", required = false) String mypage) {
 		//
-		String url = "community/withdrawal";
+		String url = "community/withdrawal.do";
 		String msg = "커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
@@ -177,13 +181,14 @@ public class CommunityController {
 	
 	@RequestMapping("/community/withdrawal.do")
 	public String withdrawalCommunity(HttpServletRequest req, 
-			@RequestParam("community_id") int communityId, String mypage) {
+			@RequestParam("community_id") int communityId, 
+			@RequestParam(value = "mypage", required = false) String mypage) {
 		//
 		String email =  SessionManager.getInstance(req).getLoginId();
 
 		communityService.withdrawalCommunity(communityId, email);
 		
-		if (mypage != null) {
+		if (("true").equals(mypage)) {
 			return "redirect:/user/mypage";
 		} else {
 			return "redirect:/main";

@@ -88,7 +88,7 @@ public class ClubController {
 	@RequestMapping(value = "/club/remove", method = RequestMethod.GET)
 	public String removeCommunity(Model model) {
 		//
-		String url = "club/remove";
+		String url = "club/remove.do";
 		String msg = "클럽을 삭제하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
@@ -112,7 +112,7 @@ public class ClubController {
 	@RequestMapping(value = "/club/withdrawal")
 	public String withdrawl(Model model) {
 		//
-		String url = "club/withdrawal";
+		String url = "club/withdrawal.do";
 		String msg = "클럽을 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);

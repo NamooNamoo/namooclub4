@@ -55,12 +55,12 @@
 			</table>
 			<c:choose>
 				<c:when test="${param.level==1}">
-					<th class="text-right"><button class="btn btn-default" value="3" onclick="location.href='${ctx}/manage/club_mem?id=${param.id}&level=3&club_id=${param.club_id}'">대표 관리자</button></th>
-					<th class="text-right"><button class="btn btn-default" value="2" onclick="location.href='${ctx}/manage/club_mem?id=${param.id}&level=2&club_id=${param.club_id}'">서브 관리자</button></th>
+					<th class="text-right"><button class="btn btn-default" value="3" onclick="location.href='${ctx}/manage/club_mem.do?id=${param.id}&level=3&club_id=${param.club_id}'">대표 관리자</button></th>
+					<th class="text-right"><button class="btn btn-default" value="2" onclick="location.href='${ctx}/manage/club_mem.do?id=${param.id}&level=2&club_id=${param.club_id}'">서브 관리자</button></th>
 				</c:when>
 				<c:when test="${param.level==2}">
-					<th class="text-right"><button class="btn btn-default" value="3" onclick="location.href='${ctx}/manage/club_mem?id=${param.id}&level=3&club_id=${param.club_id}'">대표 관리자</button></th>
-					<th class="text-right"><button class="btn btn-default" value="2" onclick="location.href='${ctx}/manage/club_mem?id=${param.id}&level=1&club_id=${param.club_id}'">일반 멤버</button></th>
+					<th class="text-right"><button class="btn btn-default" value="3" onclick="location.href='${ctx}/manage/club_mem.do?id=${param.id}&level=3&club_id=${param.club_id}'">대표 관리자</button></th>
+					<th class="text-right"><button class="btn btn-default" value="2" onclick="location.href='${ctx}/manage/club_mem.do?id=${param.id}&level=1&club_id=${param.club_id}'">일반 멤버</button></th>
 				</c:when>
 			</c:choose>
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Refresh" content="3;URL=${ctx}/view/user/login.xhtml">
+<meta http-equiv="Refresh" content="3;URL=${ctx}/user/login">
 <%@include file="../common/head.jsp"%>
 <title>나무커뮤니티</title>
 <style type="text/css">
@@ -79,7 +79,7 @@ body {
 
 			<div class="row info-btn">
 				<button class="btn btn-large btn-default"
-					onclick="location.href='${ctx}/view/user/login.xhtml'">로그인
+					onclick="location.href='${ctx}/user/login'">로그인
 					페이지로 이동</button>
 			</div>
 		</div>

@@ -42,7 +42,7 @@
 
 				<div class="well">
 					<p>나와 같은 관심사를 가진 멤버를 모집하고 열심히 운영하여 커뮤니티를 성장시켜 보세요.</p>
-					<form class="form-horizontal" action="${ctx}/community/open"
+					<form class="form-horizontal" action="${ctx}/community/open.do"
 						method="post">
 						<fieldset>
 							<div class="form-group">

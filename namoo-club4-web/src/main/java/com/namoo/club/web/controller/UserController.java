@@ -73,7 +73,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/user/logout")
+	@RequestMapping("/user/logout.do")
 	public String logout(HttpServletRequest req, HttpSession session) {
 		//
 		String url = req.getHeader("Referer");
@@ -101,7 +101,7 @@ public class UserController {
 	@RequestMapping(value = "/user/withdrawal")
 	public String withdrawal(Model model) {
 		//
-		String url = "user/withdrawal";
+		String url = "user/withdrawal.do";
 		String msg = "나무커뮤니티를 탈퇴하시겠습니까?";
 		
 		return MessageUtility.getInstance().showInfo(model, msg, url);
@@ -143,7 +143,7 @@ public class UserController {
 	}
 	
 	@LoginRequired
-	@RequestMapping(value = "/user/modify")
+	@RequestMapping(value = "/user/modify.do")
 	public String modify(SocialPerson person) {
 		//
 		townerService.modifyTowner(person.getName(), person.getEmail(), 

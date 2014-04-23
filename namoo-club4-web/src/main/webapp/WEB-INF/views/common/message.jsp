@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <%@include file="../common/head.jsp"%>
-<meta http-equiv="Refresh" content="3;URL=${ctx}/user/mypage.do">
+<meta http-equiv="Refresh" content="3;URL=${ctx}/user/mypage">
 <title>나무커뮤니티</title>
 <style type="text/css">
 body {
@@ -79,7 +79,7 @@ body {
 
 			<div class="row info-btn">
 				<button class="btn btn-large btn-default"
-					onclick="location.href='${ctx}/user/mypage.do'">회원정보
+					onclick="location.href='${ctx}/user/mypage'">회원정보
 					페이지로 이동</button>
 			</div>
 		</div>

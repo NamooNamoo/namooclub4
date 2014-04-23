@@ -71,12 +71,14 @@
 		<div class="info-body">
 
 			<h3>안내 타이틀</h3>
-			<p>${message}</p>
+			<p>${msg}</p>
 
 			<form class="form-horizontal" action="${ctx}/${url}" method="post">
 				<input type="hidden" name="community_id"
 					value="${param.community_id}"> <input type="hidden"
 					name="club_id" value="${param.club_id}">
+					<input type="hidden"
+					name="mypage" value="${param.mypage}">
 				<fieldset>
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-2">
